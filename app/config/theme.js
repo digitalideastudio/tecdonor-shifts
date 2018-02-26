@@ -27,6 +27,7 @@ export const colors = {
     $color: '#000',
     $colorTitle: '#505050',
     $colorOnDark: '#fff',
+    $colorOnDark2: '#D3D3D3',
     $pageTitleColor: '#7D8BA1',
     $placeholderColor: '#C4C4C4',
     $borderColor: '#DDDFE4',
@@ -46,11 +47,21 @@ export const input = {
     $inputFontSize: 16
 };
 
+export const textShadow = {
+    shadowColor: colors.$color,
+    shadowOffset: {
+        width: 1,
+        height: 1
+    },
+    shadowOpacity: .5,
+    shadowRadius: 1
+};
+
 export const theme = {
     ...colors,
     ...block,
     ...input,
-    ...fonts
+    ...fonts,
 };
 
 EStyleSheet.build({ ...theme });
