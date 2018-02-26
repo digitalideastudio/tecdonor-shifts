@@ -9,9 +9,6 @@ import { theme } from '../../../config/theme';
 import { InputWithIcon } from '../../../components/TextInput';
 
 const styles = EStyleSheet.create({
-    container: {
-        alignItems: 'center',
-    },
     topInput: {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0
@@ -24,15 +21,15 @@ const styles = EStyleSheet.create({
 });
 
 const LoginInputGroup = ({ style }) => (
-    <View style={[styles.container, style]}>
+    <View style={style}>
         <InputWithIcon
             placeholder={'username'}
-            icon={<Icon name="user" color={theme.$firmColor1}/>}
+            icon={<Icon name="user" color={theme.$firmColor1} size={42} />}
             style={styles.topInput}
         />
         <InputWithIcon
             placeholder={'password'}
-            icon={<Icon name="lock" color={theme.$firmColor2}/>}
+            icon={<Icon name="lock" color={theme.$firmColor2} size={42} />}
             style={styles.bottomInput}
             password
         />

@@ -5,7 +5,8 @@ import LogoImage from './img/tecdonor.png';
 
 const styles = EStyleSheet.create({
     logo: {
-        width: 279, height: 45
+        resizeMode: 'contain',
+        width: '100%'
     }
 });
 

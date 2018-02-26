@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, Text } from 'react-native';
+import { View, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { PageTitleWithLogo } from '../../components/Title';
@@ -22,10 +22,8 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
     },
     formContainer: {
-        flex: 1,
         maxWidth: 300,
-        alignItems: 'center',
-
+        width: '100%',
     }
 });
 
@@ -33,17 +31,19 @@ class LoginContainer extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <View style={styles.headContainer}>
-                    <PageTitleWithLogo title={'Check In & Check Out'} />
-                </View>
-                <View style={styles.mainContainer}>
-                    <View
-                        style={styles.formContainer}
-                    >
-                        <LoginInputGroup style={{ marginBottom: 40 }}/>
-                        <FlatButton  title="Log In"/>
+                <KeyboardAvoidingView style={styles.container} behavior="padding">
+                    <View style={styles.headContainer}>
+                        <PageTitleWithLogo title={'Check In & Check Out'} />
                     </View>
-                </View>
+                    <View style={styles.mainContainer}>
+                        <View
+                            style={styles.formContainer}
+                        >
+                            <LoginInputGroup style={{ marginBottom: 40 }}/>
+                            <FlatButton  text="Log In"/>
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
             </SafeAreaView>
         );
     }

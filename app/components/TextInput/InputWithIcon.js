@@ -1,63 +1,79 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, TextInput } from 'react-native';
+import { View, TouchableWithoutFeedback, TouchableOpacity, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { FlatButton } from '../Button';
 
-const styles = EStyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth: '$inputBorderWidth',
-        borderColor: '$inputBorderColor',
-        borderRadius: '$inputBorderRadius',
-    },
-    iconContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 3,
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-    input: {
-        flex: 1,
-        height: '100%',
-        color: '$inputText',
-        fontSize: '$inputFontSize',
-    },
-});
+import styles from './styles';
 
-
-const InputWithIcon = ({ placeholder, icon, password, style }) => {
+const InputWithIcon = ({
+                           placeholder,
+                           icon,
+                           password,
+                           onButtonPress,
+                           buttonText,
+                           keyboardType,
+                           style,
+                           inputStyle,
+                       }) => {
     let inputRef;
 
-    onPress = () => {
+    const onIconPress = () => {
         inputRef.focus()
     };
 
+    const getIcon = () => {
+        if (icon) {
+            return (
+                <TouchableWithoutFeedback onPress={onIconPress}>
+                    <View style={styles.iconContainer}>
+                        {icon}
+                    </View>
+                </TouchableWithoutFeedback>
+            );
+        }
+        return null;
+    };
+
+    const getButton = () => {
+        if (buttonText) {
+            return (
+                <FlatButton
+                    onPress={onButtonPress}
+                    text={buttonText}
+                    buttonStyle={styles.button}
+                />
+            )
+        }
+        return null;
+    };
+
     return (
-        <TouchableWithoutFeedback
-            onPress={onPress}
-        >
+        <View>
             <View style={[styles.container, style]}>
-                <View style={styles.iconContainer}>
-                    {React.cloneElement(icon, { size: 42 })}
-                </View>
+                {getIcon()}
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, inputStyle]}
                     placeholder={placeholder}
                     secureTextEntry={password}
                     underlineColorAndroid="transparent"
                     ref={ref => inputRef = ref }
+                    keyboardType={keyboardType}
                 />
+                {getButton()}
             </View>
-        </TouchableWithoutFeedback>
+        </View>
     )
 };
 
 InputWithIcon.propTypes = {
     placeholder: PropTypes.string,
-    icon: PropTypes.element.isRequired,
+    icon: PropTypes.element,
     password: PropTypes.bool,
+    buttonText: PropTypes.string,
+    onButtonPress: PropTypes.func,
+    keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
+    style: PropTypes.any,
+    inputStyle: PropTypes.any,
 };
 
 export default InputWithIcon;
