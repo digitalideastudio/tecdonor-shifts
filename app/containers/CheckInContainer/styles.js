@@ -31,12 +31,4 @@ export default EStyleSheet.create({
         flex: 3,
         padding: 15,
     },
-    mainSpacer: {
-        flex: 0.3,
-    },
-    inputContainer: {
-        maxWidth: 400,
-        alignSelf: 'center',
-        width: '100%',
-    }
 });

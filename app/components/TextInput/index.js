@@ -1,3 +1,4 @@
-import InputWithIcon from './InputWithIcon';
+import InputWithIconAndButton from './InputWithIconAndButton';
+import styles from './styles';
 
-export { InputWithIcon };
+export { InputWithIconAndButton, styles };

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, TouchableOpacity, TextInput } from 'react-native';
+import { View, TouchableWithoutFeedback, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { FlatButton } from '../Button';
 
 import styles from './styles';
 
-const InputWithIcon = ({
+const InputWithIconAndButton = ({
                            placeholder,
                            icon,
                            password,
@@ -65,7 +65,7 @@ const InputWithIcon = ({
     )
 };
 
-InputWithIcon.propTypes = {
+InputWithIconAndButton.propTypes = {
     placeholder: PropTypes.string,
     icon: PropTypes.element,
     password: PropTypes.bool,
@@ -76,4 +76,4 @@ InputWithIcon.propTypes = {
     inputStyle: PropTypes.any,
 };
 
-export default InputWithIcon;
+export default InputWithIconAndButton;

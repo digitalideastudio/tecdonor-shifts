@@ -6,7 +6,7 @@ import { FontAwesome as Icon } from '@expo/vector-icons';
 
 import { theme } from '../../../config/theme';
 
-import { InputWithIcon } from '../../../components/TextInput';
+import { InputWithIconAndButton } from '../../../components/TextInput';
 
 const styles = EStyleSheet.create({
     topInput: {
@@ -22,12 +22,12 @@ const styles = EStyleSheet.create({
 
 const LoginInputGroup = ({ style }) => (
     <View style={style}>
-        <InputWithIcon
+        <InputWithIconAndButton
             placeholder={'username'}
             icon={<Icon name="user" color={theme.$firmColor1} size={42} />}
             style={styles.topInput}
         />
-        <InputWithIcon
+        <InputWithIconAndButton
             placeholder={'password'}
             icon={<Icon name="lock" color={theme.$firmColor2} size={42} />}
             style={styles.bottomInput}

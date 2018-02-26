@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StatusBar, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Container } from '../../components/Container';
 import { Footer } from './components/Footer';
+import { PinInput } from './components/PinInput';
+import { Container } from '../../components/Container';
 import { BackgroundImage } from '../../components/BackgroundImage';
-import { InputWithIcon } from '../../components/TextInput';
-import { ThreeAsterisk } from '../../components/Icon';
 
 import styles from './styles';
 
@@ -33,19 +32,8 @@ class CheckInContainer extends Component {
                             </View>
                         </View>
                     </View>
-
                     <View style={styles.main}>
-                        <View style={styles.mainSpacer}/>
-                        <View style={styles.inputContainer}>
-                            <InputWithIcon
-                                icon={<ThreeAsterisk/>}
-                                buttonText={'CONFIRM'}
-                                password
-                                placeholder={'PERSONAL PIN'}
-                                inputStyle={{ textAlign: 'center' }}
-                                keyboardType={'numeric'}
-                            />
-                        </View>
+                        <PinInput/>
                     </View>
                 </KeyboardAvoidingView>
                 <Footer/>
