@@ -3,15 +3,18 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Logo from '../Logo';
+import { Logo } from '../Logo';
 import PageTitle from './PageTitle';
 
 const styles = EStyleSheet.create({
     container: {
-        paddingTop: 10
+        alignItems: 'center',
+        paddingTop: 10,
     },
     logoContainer: {
-        marginBottom: 10
+        height: 50,
+        paddingBottom: 10,
+        width: 280,
     }
 });
 

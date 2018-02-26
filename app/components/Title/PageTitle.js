@@ -9,14 +9,7 @@ const styles = EStyleSheet.create({
         lineHeight: 22,
         textAlign: 'center',
         color: '$pageTitleColor',
-        ...Platform.select({
-            ios: {
-                fontFamily: 'Helvetica',
-            },
-            android: {
-                fontFamily: 'sans-serif'
-            }
-        })
+        fontFamily: '$commonFontFamily'
     }
 });
 
