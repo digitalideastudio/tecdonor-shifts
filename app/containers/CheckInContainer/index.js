@@ -1,47 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { textShadow } from '../../config/theme';
-
+import { Container } from '../../components/Container';
+import { Footer } from './components/Footer';
 import { BackgroundImage } from '../../components/BackgroundImage';
+import { InputWithIcon } from '../../components/TextInput';
+import { ThreeAsterisk } from '../../components/Icon';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '$bgPrimary'
-    },
-    header: {
-        flex: 2,
-    },
-    titles: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        paddingBottom: 20,
-        alignItems: 'center'
-    },
-    pageTitleText: {
-        fontSize: '$h1FontSize',
-        color: '$colorOnDark',
-        textAlign: 'center',
-        ...textShadow
-    },
-    pageSubTitleText: {
-        fontSize: '$h3FontSize',
-        color: '$colorOnDark2',
-        textAlign: 'center',
-        ...textShadow
-    },
-    main: {
-        flex: 3
-
-    }
-});
+import styles from './styles';
 
 class CheckInContainer extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <Container>
                 <StatusBar barStyle="light-content"/>
                 <View style={styles.header}>
                     <BackgroundImage
@@ -59,9 +31,20 @@ class CheckInContainer extends Component {
                     </View>
                 </View>
                 <View style={styles.main}>
-
+                    <View style={styles.mainSpacer}/>
+                    <View style={styles.inputContainer}>
+                        <InputWithIcon
+                            icon={<ThreeAsterisk/>}
+                            buttonText={'CONFIRM'}
+                            password
+                            placeholder={'PERSONAL PIN'}
+                            inputStyle={{ textAlign: 'center' }}
+                            keyboardType={'numeric'}
+                        />
+                    </View>
                 </View>
-            </View>
+                <Footer/>
+            </Container>
         );
     }
 }

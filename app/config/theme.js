@@ -29,7 +29,7 @@ export const colors = {
     $colorOnDark: '#fff',
     $colorOnDark2: '#D3D3D3',
     $pageTitleColor: '#7D8BA1',
-    $placeholderColor: '#C4C4C4',
+    $barelyColor: '#C4C4C4',
     $borderColor: '#DDDFE4',
 };
 
@@ -44,6 +44,7 @@ export const input = {
     $inputBorderColor: colors.$borderColor,
     $inputBorderWidth: block.$blockBorderWidth,
     $inputBorderRadius: block.$blockBorderRadius,
+    $placeholderColor: colors.$barelyColor,
     $inputFontSize: 16
 };
 

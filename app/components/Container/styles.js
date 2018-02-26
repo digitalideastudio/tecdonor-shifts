@@ -1,9 +1,8 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-    logo: {
-        resizeMode: 'contain',
+    container: {
+        backgroundColor: '$bgPrimary',
         flex: 1,
-        alignSelf: 'stretch'
     }
 });
