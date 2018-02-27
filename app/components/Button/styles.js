@@ -7,9 +7,8 @@ export default EStyleSheet.create({
     button: {
         backgroundColor: '$firmColor1',
         borderRadius: '$inputBorderRadius',
-        padding: 15,
+        padding: 20,
         alignItems: 'center',
-        flex: 1,
     },
     buttonText: {
         fontFamily: '$commonFontFamily',
