@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, KeyboardAvoidingView } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { PageTitleWithLogo } from '../../components/Title';
 import { FlatButton } from '../../components/Button';
 import LoginInputGroup from './components/LoginInputGroup';
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '$bgPrimary',
-    },
-    headContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    mainContainer: {
-        flex: 2,
-        padding: 15,
-        alignItems: 'center',
-    },
-    formContainer: {
-        maxWidth: 300,
-        width: '100%',
-    }
-});
+import styles from './styles';
 
 class LoginContainer extends Component {
     render() {
@@ -39,7 +20,10 @@ class LoginContainer extends Component {
                             style={styles.formContainer}
                         >
                             <LoginInputGroup style={{ marginBottom: 40 }}/>
-                            <FlatButton  text="Log In"/>
+                            <FlatButton
+                                text="Log In"
+                                style={styles.loginButton}
+                            />
                         </View>
                     </View>
                 </KeyboardAvoidingView>
