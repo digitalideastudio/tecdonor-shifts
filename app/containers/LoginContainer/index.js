@@ -8,7 +8,7 @@ import { FlatButton } from '../../components/Button';
 import { Container } from '../../components/Container';
 import LoginInputGroup from './components/LoginInputGroup';
 
-import { setInputValue } from '../../actions/login';
+import { setInputValue, logIn } from '../../actions/login';
 
 import styles from './styles';
 
@@ -16,15 +16,12 @@ class LoginContainer extends Component {
     static propTypes = {
         username: PropTypes.string,
         password: PropTypes.string,
-        dispatch: PropTypes.func
-    };
-
-    _onFieldChange = ({ name, value }) => {
-        this.props.dispatch(setInputValue({ name, value }));
+        onFieldChange: PropTypes.func,
+        logIn: PropTypes.func
     };
 
     render() {
-        const { username, password } = this.props;
+        const { username, password, onFieldChange, logIn } = this.props;
 
         return (
             <Container>
@@ -41,11 +38,12 @@ class LoginContainer extends Component {
                                     style={{ marginBottom: 40 }}
                                     username={username}
                                     password={password}
-                                    onFieldChange={this._onFieldChange}
+                                    onFieldChange={onFieldChange}
                                 />
                                 <FlatButton
                                     text="Log In"
                                     style={styles.loginButton}
+                                    onPress={logIn}
                                 />
                             </View>
                         </View>
@@ -65,4 +63,15 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(LoginContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logIn: () => {
+            dispatch(logIn());
+        },
+        onFieldChange: ({ name, value }) => {
+            dispatch(setInputValue({ name, value }));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
