@@ -25,16 +25,19 @@
   },
   "dependencies": {
     "expo": "^25.0.0",
+    "hoist-non-react-statics": "^2.5.0",
     "moment": "^2.20.1",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-dropdownalert": "^3.3.0",
     "react-native-extended-stylesheet": "^0.8.1",
     "react-native-modal": "^5.1.0",
     "react-navigation": "^1.2.1",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "validate.js": "^0.12.0"
   }
 }
