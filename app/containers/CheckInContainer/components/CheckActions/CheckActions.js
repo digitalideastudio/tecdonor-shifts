@@ -6,17 +6,20 @@ import { FlatButton } from '../../../../components/Button';
 
 import styles from './styles';
 
-const Actions = () => (
+const CheckActions = ({ onButtonPress }) => (
     <View style={styles.container}>
         <Timers />
         <View style={styles.buttonContainer}>
-            <FlatButton text="CHECK OUT"/>
+            <FlatButton
+                text="CHECK OUT"
+                onPress={onButtonPress}
+            />
         </View>
     </View>
 );
 
-Actions.propTypes = {
-
+CheckActions.propTypes = {
+    onButtonPress: PropTypes.func
 };
 
-export default Actions;
+export default CheckActions;

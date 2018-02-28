@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, KeyboardAvoidingView } from 'react-native';
+import { View, Text, StatusBar, KeyboardAvoidingView, Modal } from 'react-native';
 import PropTypes from 'prop-types';
 import { Footer } from './components/Footer';
 import { PinInput } from './components/PinInput';
+import { CheckActions } from './components/CheckActions';
+import { CheckActionResultModal } from './components/CheckActionResultModal';
 import { Container } from '../../components/Container';
 import { BackgroundImage } from '../../components/BackgroundImage';
 
 import styles from './styles';
 
 class CheckInContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isShowModal: false
+        }
+    }
+
+    _hideModal() {
+        this.setState({ isShowModal: false })
+    }
+
+    _showModal() {
+        this.setState({ isShowModal: true })
+    }
+
     render() {
         return (
             <Container>
@@ -33,10 +51,17 @@ class CheckInContainer extends Component {
                         </View>
                     </View>
                     <View style={styles.main}>
-                        <PinInput/>
+                        <CheckActions
+                            onButtonPress={this._showModal.bind(this)}
+                        />
                     </View>
                 </KeyboardAvoidingView>
                 <Footer/>
+                <CheckActionResultModal
+                    show={this.state.isShowModal}
+                    onHide={this._hideModal.bind(this)}
+                />
+
             </Container >
         );
     }
