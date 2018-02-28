@@ -18,6 +18,7 @@ export default EStyleSheet.create({
         width: '100%',
     },
     loginButton: {
+        marginTop: 40,
         flex: 1
     }
 });

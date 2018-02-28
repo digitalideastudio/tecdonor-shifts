@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, ScrollView } from 'react-native';
+import { View, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { PageTitleWithLogo } from '../../components/Title';
+import { Container } from '../../components/Container';
 import ShiftItem from './components/ShiftItem';
 
 const styles = EStyleSheet.create({
@@ -23,33 +24,37 @@ const styles = EStyleSheet.create({
     },
     shiftItem: {
         paddingBottom: 10,
-        alignItems: 'center'
+        alignItems: 'center',
     },
 });
 
 class UpcomingShiftsContainer extends Component {
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <ScrollView
-                    contentContainerStyle={{ flexGrow:1 }}
-                >
-                    <View style={styles.headContainer}>
-                        <PageTitleWithLogo title={'Upcoming shifts'}/>
-                    </View>
-                    <View style={styles.mainContainer}>
-                        <View style={styles.shiftItem}>
-                            <ShiftItem />
+            <Container>
+                <StatusBar barStyle="dark-content"/>
+                <SafeAreaView style={styles.container}>
+
+                    <ScrollView
+                        contentContainerStyle={{ flexGrow: 1 }}
+                    >
+                        <View style={styles.headContainer}>
+                            <PageTitleWithLogo title={'Upcoming shifts'}/>
                         </View>
-                        <View style={styles.shiftItem}>
-                            <ShiftItem />
+                        <View style={styles.mainContainer}>
+                            <View style={styles.shiftItem}>
+                                <ShiftItem />
+                            </View>
+                            <View style={styles.shiftItem}>
+                                <ShiftItem />
+                            </View>
+                            <View style={styles.shiftItem}>
+                                <ShiftItem />
+                            </View>
                         </View>
-                        <View style={styles.shiftItem}>
-                            <ShiftItem />
-                        </View>
-                    </View>
-                </ScrollView>
-            </SafeAreaView>
+                    </ScrollView>
+                </SafeAreaView>
+            </Container>
         );
     }
 }

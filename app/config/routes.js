@@ -15,6 +15,7 @@ export default StackNavigator({
         screen: CheckInContainer
     }
 }, {
+    // initialRouteName: 'UpcomingShifts',
     navigationOptions: {
         header: null
     }
