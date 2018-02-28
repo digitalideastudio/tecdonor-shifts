@@ -4,6 +4,7 @@ import LoginContainer from './containers/LoginContainer';
 import UpcomingShiftsContainer from './containers/UpcomingShiftsContainer';
 import CheckInContainer from './containers/CheckInContainer';
 
+import Navigator from './config/routes';
 import store from './config/store';
 // Import theme style variables
 import './config/theme';
@@ -11,6 +12,6 @@ import './config/theme';
 
 export default () => (
     <Provider store={store}>
-        <LoginContainer />
+        <Navigator onNavigationStateChange={null} />
     </Provider>
 );
