@@ -2,6 +2,7 @@ import {
     SET_LOGIN_INPUT_VALUE,
     SET_LOGIN_LOADING,
     SET_LOGIN_DONE,
+    LOG_IN
 } from '../actions/login';
 
 const initialState = {
@@ -13,6 +14,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case LOG_IN:
+            return {
+                ...state,
+                loading: true
+            };
         case SET_LOGIN_INPUT_VALUE:
             return {
                 ...state,
