@@ -20,24 +20,30 @@ const styles = EStyleSheet.create({
     }
 });
 
-const LoginInputGroup = ({ style }) => (
+const LoginInputGroup = ({ style, username, password, onFieldChange }) => (
     <View style={style}>
         <InputWithIconAndButton
             placeholder={'username'}
             icon={<Icon name="user" color={theme.$firmColor1} size={42} />}
             style={styles.topInput}
+            onChangeText={value => onFieldChange({ name: 'username', value })}
+            value={username}
         />
         <InputWithIconAndButton
             placeholder={'password'}
             icon={<Icon name="lock" color={theme.$firmColor2} size={42} />}
             style={styles.bottomInput}
+            value={password}
+            onChangeText={value => onFieldChange({ name: 'password', value })}
             password
         />
     </View>
 );
 
 LoginInputGroup.propTypes = {
-
+    username: PropTypes.string,
+    password: PropTypes.string,
+    onFieldChange: PropTypes.func
 };
 
 export default LoginInputGroup;

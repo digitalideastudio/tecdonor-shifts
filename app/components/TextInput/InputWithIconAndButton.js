@@ -6,15 +6,17 @@ import { FlatButton } from '../Button';
 import styles from './styles';
 
 const InputWithIconAndButton = ({
-                           placeholder,
-                           icon,
-                           password,
-                           onButtonPress,
-                           buttonText,
-                           keyboardType,
-                           style,
-                           inputStyle,
-                       }) => {
+                                    placeholder,
+                                    icon,
+                                    password,
+                                    onButtonPress,
+                                    buttonText,
+                                    keyboardType,
+                                    style,
+                                    inputStyle,
+                                    onChangeText,
+                                    value,
+                                }) => {
     let inputRef;
 
     const onIconPress = () => {
@@ -58,6 +60,8 @@ const InputWithIconAndButton = ({
                     underlineColorAndroid="transparent"
                     ref={ref => inputRef = ref }
                     keyboardType={keyboardType}
+                    value={value}
+                    onChangeText={onChangeText}
                 />
                 {getButton()}
             </View>
@@ -74,6 +78,8 @@ InputWithIconAndButton.propTypes = {
     keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
     style: PropTypes.any,
     inputStyle: PropTypes.any,
+    value: PropTypes.string,
+    onChangeText: PropTypes.func,
 };
 
 export default InputWithIconAndButton;
