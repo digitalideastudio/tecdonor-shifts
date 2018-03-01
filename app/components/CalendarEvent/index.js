@@ -1,3 +1,4 @@
 import CalendarEvent from './CalendarEvent';
+import styles from './styles';
 
-export { CalendarEvent };
+export { CalendarEvent, styles };
