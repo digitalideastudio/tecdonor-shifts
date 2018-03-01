@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { connect } from 'react-redux';
+
+import { fetchShifts } from '../../actions/shifts';
 
 import { PageTitleWithLogo } from '../../components/Title';
 import { Container } from '../../components/Container';
-import ShiftItem from './components/ShiftItem';
+import { ShiftItem } from './components/ShiftItem';
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '$bgPrimary',
-        flexDirection: 'row',
-    },
-    headContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    mainContainer: {
-        flex: 2,
-        padding: 15,
-    },
-    shiftItem: {
-        paddingBottom: 10,
-        alignItems: 'center',
-    },
-});
+import styles from './styles';
 
 class UpcomingShiftsContainer extends Component {
+    static propTypes = {
+        shifts: PropTypes.array,
+        loading: PropTypes.bool,
+        fetchShifts: PropTypes.func,
+    };
+
+    _getShifts = () => {
+        return this.props.shifts.map(shift => (
+            <ShiftItem
+                key={shift.id}
+                style={styles.shiftItem}
+                {...shift}
+            />
+        ));
+    };
+
     render() {
         return (
             <Container>
@@ -42,15 +41,7 @@ class UpcomingShiftsContainer extends Component {
                             <PageTitleWithLogo title={'Upcoming shifts'}/>
                         </View>
                         <View style={styles.mainContainer}>
-                            <View style={styles.shiftItem}>
-                                <ShiftItem />
-                            </View>
-                            <View style={styles.shiftItem}>
-                                <ShiftItem />
-                            </View>
-                            <View style={styles.shiftItem}>
-                                <ShiftItem />
-                            </View>
+                            {this._getShifts()}
                         </View>
                     </ScrollView>
                 </SafeAreaView>
@@ -59,6 +50,21 @@ class UpcomingShiftsContainer extends Component {
     }
 }
 
-UpcomingShiftsContainer.propTypes = {};
+const mapStateToProps = (state) => {
+    const { shifts, loading } = state.shifts;
 
-export default UpcomingShiftsContainer;
+    return {
+        shifts,
+        loading,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchShifts: () => {
+            dispatch(fetchShifts());
+        },
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UpcomingShiftsContainer);
