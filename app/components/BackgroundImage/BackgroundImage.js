@@ -1,35 +1,24 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
-const styles = EStyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%'
-    },
-    image: {
-        flex: 1,
-        resizeMode: 'cover'
-    }
-});
+import styles from './styles';
 
-const BackgroundImage = ({ source }) => {
+const BackgroundImage = ({ source, blurStyle }) => {
     return (
         <View style={styles.container}>
             <Image
                 source={source}
                 style={styles.image}
             />
+            <View style={[styles.container, blurStyle]}/>
         </View>
     )
 };
 
 BackgroundImage.propTypes = {
-
+    source: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    blurStyle: PropTypes.any
 };
 
 export default BackgroundImage;
