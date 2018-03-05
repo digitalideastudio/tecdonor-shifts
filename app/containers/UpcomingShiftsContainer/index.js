@@ -3,11 +3,14 @@ import { View, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchShifts } from '../../actions/shifts';
-
+import { CommonText } from '../../components/Common';
+import { Spinner } from '../../components/Spinner';
+import { connectAlert } from '../../components/Alert';
 import { PageTitleWithLogo } from '../../components/Title';
 import { Container } from '../../components/Container';
 import { ShiftItem } from './components/ShiftItem';
+
+import { fetchShifts, setSelectedShift } from '../../actions/shifts';
 
 import styles from './styles';
 
@@ -16,16 +19,39 @@ class UpcomingShiftsContainer extends Component {
         shifts: PropTypes.array,
         loading: PropTypes.bool,
         fetchShifts: PropTypes.func,
+        setSelectedShift: PropTypes.func
+    };
+
+    componentDidMount() {
+        this.props.fetchShifts();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.fetchShiftsError) {
+            this.props.alertWithType('error', 'Fetching error', nextProps.fetchShiftsError)
+        }
+    }
+
+    _onShiftPress = (shift) => {
+        this.props.setSelectedShift(shift);
+        this.props.navigation.navigate('Checking');
     };
 
     _getShifts = () => {
-        return this.props.shifts.map(shift => (
-            <ShiftItem
-                key={shift.id}
-                style={styles.shiftItem}
-                {...shift}
-            />
-        ));
+        if (this.props.shifts && this.props.shifts.length) {
+            return this.props.shifts.map(shift => (
+                <ShiftItem
+                    key={shift.id}
+                    style={styles.shiftItem}
+                    onPress={() => this._onShiftPress(shift)}
+                    {...shift}
+                />
+            ));
+        } else if (this.props.loading){
+            return (<View><Spinner /></View>);
+        } else {
+            return <CommonText>No shifts</CommonText>
+        }
     };
 
     render() {
@@ -33,7 +59,6 @@ class UpcomingShiftsContainer extends Component {
             <Container>
                 <StatusBar barStyle="dark-content"/>
                 <SafeAreaView style={styles.container}>
-
                     <ScrollView
                         contentContainerStyle={{ flexGrow: 1 }}
                     >
@@ -51,11 +76,12 @@ class UpcomingShiftsContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { shifts, loading } = state.shifts;
+    const { shifts, loading, error } = state.shifts;
 
     return {
         shifts,
         loading,
+        fetchShiftsError: error
     }
 };
 
@@ -64,7 +90,10 @@ const mapDispatchToProps = (dispatch) => {
         fetchShifts: () => {
             dispatch(fetchShifts());
         },
+        setSelectedShift: (shift) => {
+            dispatch(setSelectedShift(shift));
+        }
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpcomingShiftsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(connectAlert(UpcomingShiftsContainer));

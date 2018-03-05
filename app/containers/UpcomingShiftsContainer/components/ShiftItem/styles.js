@@ -19,11 +19,12 @@ export default EStyleSheet.create({
     },
     titleText: {
         color: '$colorOnDark',
-        fontSize: '$h3FontSize',
-        lineHeight: '$h3LineHeight',
+        fontSize: '$pFontSize',
+        lineHeight: '$pLineHeight',
         fontFamily: '$commonFontFamily',
         paddingVertical: 2,
         paddingHorizontal: 3,
+        textAlign: 'center',
     },
     titleBlurBg: {
         backgroundColor: '#0005',

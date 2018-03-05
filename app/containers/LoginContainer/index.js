@@ -37,7 +37,6 @@ class LoginContainer extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.loginError) {
-            console.log(nextProps);
             this.props.alertWithType('error', 'Login error', nextProps.loginError)
         }
         if (nextProps.logged) {
@@ -64,7 +63,7 @@ class LoginContainer extends Component {
         } = this.props;
 
         return (
-            <Container>
+            <Container keyboardDismiss={true}>
                 <StatusBar barStyle="dark-content"/>
                 <SafeAreaView style={styles.container}>
                     <KeyboardAvoidingView style={styles.container} behavior="padding">

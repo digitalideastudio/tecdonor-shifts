@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const Spinner = ({ show }) => {
-    return !show ? null : (
+const Spinner = ({ show, size = 'large' }) => {
+    console.log();
+    return show === false ? null : (
         <View style={styles.container}>
             <ActivityIndicator
-                size="small"
-                color={styles.spinner.color}
+                size={size}
             />
         </View>
     );
@@ -17,6 +17,7 @@ const Spinner = ({ show }) => {
 
 Spinner.propTypes = {
     show: PropTypes.bool,
+    size: PropTypes.oneOf(['small', 'large'])
 };
 
 export default Spinner;

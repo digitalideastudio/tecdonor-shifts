@@ -5,12 +5,21 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 const BackgroundImage = ({ source, blurStyle }) => {
+    const getImage = () => {
+        console.log(source);
+        if (source) {
+            return (
+                <Image
+                    source={source}
+                    style={styles.image}
+                />
+            )
+        }
+        return nul;
+    };
     return (
         <View style={styles.container}>
-            <Image
-                source={source}
-                style={styles.image}
-            />
+            {getImage()}
             <View style={[styles.container, blurStyle]}/>
         </View>
     )
@@ -18,7 +27,7 @@ const BackgroundImage = ({ source, blurStyle }) => {
 
 BackgroundImage.propTypes = {
     source: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    blurStyle: PropTypes.any
+    blurStyle: PropTypes.any,
 };
 
 export default BackgroundImage;

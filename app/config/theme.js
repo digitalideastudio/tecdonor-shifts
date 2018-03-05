@@ -14,6 +14,8 @@ export const fonts = {
     $h1LineHeight: 58,
     $h3FontSize: 24,
     $h3LineHeight: 29,
+    $h5FontSize: 20,
+    $h5LineHeight: 23,
     $pFontSize: 16,
     $pLineHeight: 16
 };

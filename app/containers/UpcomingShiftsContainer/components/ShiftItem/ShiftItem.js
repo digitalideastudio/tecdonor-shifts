@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
@@ -10,8 +10,16 @@ import { CalendarEvent } from '../../../../components/CalendarEvent';
 
 import styles from './styles';
 
-const ShiftItem = ({ style, shiftTitle, location, start, volunteers, imageUrl }) => {
-
+const ShiftItem = ({
+                       style,
+                       title,
+                       location,
+                       dateStart,
+                       timeStart,
+                       volunteersCount,
+                       imageUrl,
+                       onPress,
+                   }) => {
     const getPlace = () => {
         const locationObj = JSON.parse(location);
         if (locationObj !== null && typeof locationObj === 'object' && locationObj.name) {
@@ -31,42 +39,56 @@ const ShiftItem = ({ style, shiftTitle, location, start, volunteers, imageUrl })
         return null;
     };
 
-    return (
-        <View style={[styles.container, style]}>
-            <View style={styles.titleWrap}>
+    const getBgImage = () => {
+        if (imageUrl) {
+            return (
                 <BackgroundImage
                     source={{ uri: imageUrl }}
                     blurStyle={styles.titleBlurBg}
                 />
-                <Text style={styles.titleText}>{shiftTitle}</Text>
+            );
+        }
+        return null;
+    };
+
+    return (
+        <TouchableOpacity
+            style={[styles.container, style]}
+            onPress={onPress}
+        >
+            <View style={styles.titleWrap}>
+                { getBgImage() }
+                <Text style={styles.titleText}>{title}</Text>
             </View>
             <View style={styles.mainWrap}>
                 <View style={styles.infoWrap}>
                     <View style={styles.detailInfoWrap}>
                         <View style={styles.volunteerCounter}>
                             <Text style={styles.volunteerCounterText}>
-                                {volunteers} volunteers
+                                {volunteersCount} volunteers
                             </Text>
                         </View>
                         { getPlace() }
                     </View>
                 </View>
-                <View style={styles.calendarWrap}>
+                <View >
                     <CalendarEvent
-                        date={start}
+                        date={`${dateStart} ${timeStart}`}
                     />
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 };
 
 ShiftItem.propTypes = {
     style: PropTypes.any,
-    shiftTitle: PropTypes.string,
-    start: PropTypes.string,
-    volunteers: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    title: PropTypes.string,
+    dateStart: PropTypes.string,
+    timeStart: PropTypes.string,
+    volunteersCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     imageUrl: PropTypes.string,
+    onPress: PropTypes.func,
 };
 
 export default ShiftItem;

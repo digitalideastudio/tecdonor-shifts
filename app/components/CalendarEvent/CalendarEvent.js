@@ -6,7 +6,7 @@ import moment from 'moment';
 import styles from './styles';
 
 const CalendarEvent = ({ date }) => {
-    const parsedDate = moment(`${date}Z`);
+    const parsedDate = moment(`${date}Z`, 'MM/DD/YY h:mma');
 
     return (
         <View style={styles.container}>

@@ -10,7 +10,7 @@ export default {
             allowEmpty: false,
         },
         length: {
-            minimum: 8,
+            minimum: 6,
             message: 'must be at least 8 characters',
         },
     },
