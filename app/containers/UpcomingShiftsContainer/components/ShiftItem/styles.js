@@ -5,10 +5,33 @@ export default EStyleSheet.create({
         borderWidth: '$blockBorderWidth',
         borderRadius: '$blockBorderRadius',
         borderColor: '$blockBorderColor',
-        padding: 15,
-        flexDirection: 'row',
+        flexDirection: 'column',
         backgroundColor: '$bgPrimaryLight',
-        maxWidth: 600
+        maxWidth: 400,
+        width: '100%',
+        overflow: 'hidden'
+    },
+    titleWrap: {
+        flex: 1,
+        padding: 3,
+        alignItems: 'center',
+        backgroundColor: '$firmColor1',
+    },
+    titleText: {
+        color: '$colorOnDark',
+        fontSize: '$h3FontSize',
+        lineHeight: '$h3LineHeight',
+        fontFamily: '$commonFontFamily',
+        paddingVertical: 2,
+        paddingHorizontal: 3,
+    },
+    titleBlurBg: {
+        backgroundColor: '#0005',
+    },
+    mainWrap: {
+        padding: 15,
+        flex: 1,
+        flexDirection: 'row'
     },
     userPicWrap: {
         marginRight: 15,
@@ -17,15 +40,6 @@ export default EStyleSheet.create({
     infoWrap: {
         justifyContent: 'space-between',
         flex: 1,
-    },
-    title: {
-        paddingBottom: 5
-    },
-    titleText: {
-        color: '$color',
-        fontSize: '$pFontSize',
-        lineHeight: '$pLineHeight',
-        fontFamily: '$commonFontFamily'
     },
     detailInfoWrap: {
         flexDirection: 'row',

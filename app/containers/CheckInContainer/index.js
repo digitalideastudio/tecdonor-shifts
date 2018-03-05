@@ -19,13 +19,13 @@ class CheckInContainer extends Component {
         }
     }
 
-    _hideModal() {
-        this.setState({ isShowModal: false })
-    }
+    _hideModal = () => {
+        this.setState({ isShowModal: false });
+    };
 
-    _showModal() {
-        this.setState({ isShowModal: true })
-    }
+    _showModal = () => {
+        this.setState({ isShowModal: true });
+    };
 
     render() {
         return (

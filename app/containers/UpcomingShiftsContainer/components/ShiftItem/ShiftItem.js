@@ -5,12 +5,12 @@ import { FontAwesome as Icon } from '@expo/vector-icons';
 
 import { theme } from '../../../../config/theme';
 
-import { UserPic } from '../../../../components/UserPic';
+import { BackgroundImage } from '../../../../components/BackgroundImage';
 import { CalendarEvent } from '../../../../components/CalendarEvent';
 
 import styles from './styles';
 
-const ShiftItem = ({ style, shiftTitle, location, start, volunteers }) => {
+const ShiftItem = ({ style, shiftTitle, location, start, volunteers, imageUrl }) => {
 
     const getPlace = () => {
         const locationObj = JSON.parse(location);
@@ -33,28 +33,29 @@ const ShiftItem = ({ style, shiftTitle, location, start, volunteers }) => {
 
     return (
         <View style={[styles.container, style]}>
-            <View style={styles.userPicWrap}>
-                <UserPic />
-            </View>
-            <View style={styles.infoWrap}>
-                <View style={styles.title}>
-                    <Text style={styles.titleText}>
-                        {shiftTitle}
-                    </Text>
-                </View>
-                <View style={styles.detailInfoWrap}>
-                    <View style={styles.volunteerCounter}>
-                        <Text style={styles.volunteerCounterText}>
-                            {volunteers} volunteers
-                        </Text>
-                    </View>
-                    { getPlace() }
-                </View>
-            </View>
-            <View style={styles.calendarWrap}>
-                <CalendarEvent
-                    date={start}
+            <View style={styles.titleWrap}>
+                <BackgroundImage
+                    source={{ uri: imageUrl }}
+                    blurStyle={styles.titleBlurBg}
                 />
+                <Text style={styles.titleText}>{shiftTitle}</Text>
+            </View>
+            <View style={styles.mainWrap}>
+                <View style={styles.infoWrap}>
+                    <View style={styles.detailInfoWrap}>
+                        <View style={styles.volunteerCounter}>
+                            <Text style={styles.volunteerCounterText}>
+                                {volunteers} volunteers
+                            </Text>
+                        </View>
+                        { getPlace() }
+                    </View>
+                </View>
+                <View style={styles.calendarWrap}>
+                    <CalendarEvent
+                        date={start}
+                    />
+                </View>
             </View>
         </View>
     )
@@ -64,7 +65,8 @@ ShiftItem.propTypes = {
     style: PropTypes.any,
     shiftTitle: PropTypes.string,
     start: PropTypes.string,
-    volunteers: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    volunteers: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    imageUrl: PropTypes.string,
 };
 
 export default ShiftItem;

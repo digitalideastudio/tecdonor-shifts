@@ -13,7 +13,8 @@ const initialState = {
             shiftTitle: 'Some shift title',
             shiftDescription: 'Another shift description',
             start: '2018-03-01 08:00:00',
-            volunteers: 143
+            volunteers: 143,
+            imageUrl: 'https://gv.ymca.ca/CWP/media/YGV/Images/03-%20Banner%20with%20Left%20Rail%20(869%20x%20351)/Camps/LRBanner_Camps_day-camps-volunteer-girl.jpg'
         },
         {
             color: '#ff00ff',
@@ -22,7 +23,8 @@ const initialState = {
             shiftTitle: 'Halo halo hey',
             shiftDescription: 'It;s ablasdfasdf asdf a',
             start: '2018-04-14 23:30:00',
-            volunteers: 1
+            volunteers: 1,
+            imageUrl: 'https://tecdonor-devedge.s3.amazonaws.com/photos/b58ffb817335568fbfbe7d1c4935c22e/ecf9c7b87de0c2ff0090bbea25cc72ca.jpg'
         },
     ],
     loading: false,
