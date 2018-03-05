@@ -42,7 +42,7 @@ const InputWithIconAndButton = ({
                 <FlatButton
                     onPress={onButtonPress}
                     text={buttonText}
-                    buttonStyle={styles.button}
+                    style={styles.button}
                 />
             )
         }
