@@ -1,12 +1,9 @@
 export default {
-    username: {
+    email: {
         presence: {
             allowEmpty: false,
         },
-        length: {
-            minimum: 3,
-            message: 'must be at least 3 characters',
-        },
+        email: true
     },
     password: {
         presence: {

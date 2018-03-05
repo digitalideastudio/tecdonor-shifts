@@ -3,7 +3,8 @@ import { takeEvery, call, put, select } from 'redux-saga/effects';
 import {
     LOG_IN,
     SET_LOGIN_LOADING,
-    SET_LOGIN_DONE
+    SET_LOGIN_DONE,
+    SET_LOGIN_ERROR,
 } from '../actions/login';
 import {
     SET_SHIFTS,
@@ -12,10 +13,14 @@ import {
 } from '../actions/shifts';
 import * as apiUrls from './api';
 
-export const doLogin = ({ username, password }) => fetch(apiUrls.LOGIN, {
+export const doLogin = ({ email, password }) => fetch(apiUrls.LOGIN, {
     method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-        email: username,
+        email,
         password
     })
 });
@@ -25,12 +30,16 @@ export const getShifts = ({ userId = 0 }) => fetch(apiUrls.GET_SHIFTS);
 const fetchLogin = function* (action) {
     try {
         // yield put({ type: SET_LOGIN_LOADING, loading: true });
-        const { username, password } = yield select(state => state.login);
-        const response = yield call(doLogin, { username, password });
-        yield put({ type: SET_LOGIN_DONE });
+        const { email, password } = yield select(state => state.login);
+        const response = yield call(doLogin, { email, password });
+        const result = yield response.json();
+        if (result.errors) {
+            yield put({ type: SET_LOGIN_ERROR, error: result.errors.message });
+        } else {
+            yield put({ type: SET_LOGIN_DONE });
+        }
     } catch (error) {
-        yield put({ type: SET_LOGIN_LOADING, loading: false });
-        console.log(error);
+        yield put({ type: SET_LOGIN_ERROR, error });
     }
 };
 

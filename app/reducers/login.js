@@ -2,14 +2,16 @@ import {
     SET_LOGIN_INPUT_VALUE,
     SET_LOGIN_LOADING,
     SET_LOGIN_DONE,
+    SET_LOGIN_ERROR,
     LOG_IN
 } from '../actions/login';
 
 const initialState = {
-    username: '',
+    email: '',
     password: '',
     loading: false,
-    logged: false
+    logged: false,
+    error: ''
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +19,7 @@ export default (state = initialState, action) => {
         case LOG_IN:
             return {
                 ...state,
+                error: '',
                 loading: true
             };
         case SET_LOGIN_INPUT_VALUE:
@@ -34,6 +37,12 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: false,
                 logged: true
+            };
+        case SET_LOGIN_ERROR:
+            return {
+                ...state,
+                error: action.error,
+                loading: false,
             };
         default:
             return state;

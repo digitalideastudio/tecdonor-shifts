@@ -24,7 +24,7 @@ import styles from './styles';
 
 class LoginContainer extends Component {
     static propTypes = {
-        username: PropTypes.string,
+        email: PropTypes.string,
         password: PropTypes.string,
         onFieldChange: PropTypes.func,
         logIn: PropTypes.func,
@@ -32,9 +32,14 @@ class LoginContainer extends Component {
         logged: PropTypes.bool,
         navigation: PropTypes.object,
         alertWithType: PropTypes.func,
+        loginError: PropTypes.string,
     };
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.loginError) {
+            console.log(nextProps);
+            this.props.alertWithType('error', 'Login error', nextProps.loginError)
+        }
         if (nextProps.logged) {
             this.props.navigation.navigate('UpcomingShifts');
         }
@@ -52,7 +57,7 @@ class LoginContainer extends Component {
 
     render() {
         const {
-            username,
+            email,
             password,
             onFieldChange,
             loading,
@@ -71,7 +76,7 @@ class LoginContainer extends Component {
                                 style={styles.formContainer}
                             >
                                 <LoginInputGroup
-                                    username={username}
+                                    email={email}
                                     password={password}
                                     onFieldChange={onFieldChange}
                                 />
@@ -91,13 +96,14 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { username, password, loading, logged } = state.login;
+    const { email, password, loading, logged, error } = state.login;
 
     return {
-        username,
+        email,
         password,
         loading,
-        logged
+        logged,
+        loginError: error
     }
 };
 
