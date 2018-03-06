@@ -112,7 +112,11 @@ class CheckInContainer extends Component {
                         />
                         <View style={styles.titles}>
                             <View>
-                                <Text style={styles.pageTitleText}>
+                                <Text
+                                    style={styles.pageTitleText}
+                                    allowFontScaling
+                                    numberOfLines={3}
+                                >
                                     {title}
                                 </Text>
                                 <Text style={styles.pageSubTitleText}>

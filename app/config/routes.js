@@ -17,6 +17,7 @@ export default StackNavigator({
 }, {
     // initialRouteName: 'UpcomingShifts',
     navigationOptions: {
-        header: null
+        header: null,
+        gesturesEnabled: false
     }
 });

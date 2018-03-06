@@ -10,8 +10,8 @@ export const fonts = {
         ios: 'Courier',
         android: 'monospace'
     }),
-    $h1FontSize: 48,
-    $h1LineHeight: 58,
+    $h1FontSize: 38,
+    $h1LineHeight: 44,
     $h3FontSize: 24,
     $h3LineHeight: 29,
     $h5FontSize: 20,
