@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 const Spinner = ({ show, size = 'large' }) => {
-    console.log();
     return show === false ? null : (
         <View style={styles.container}>
             <ActivityIndicator

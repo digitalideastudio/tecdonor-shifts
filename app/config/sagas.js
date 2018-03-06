@@ -71,7 +71,6 @@ const fetchShifts = function* (action) {
     try {
         const response = yield call(getShifts);
         const result = yield response.json();
-        console.log(result);
         if (Array.isArray(result)) {
             yield put({ type: SET_SHIFTS, shifts: result });
         } else {
@@ -85,9 +84,7 @@ const fetchShifts = function* (action) {
 const fetchShiftStatus = function* ({ pin, shiftId }) {
     try {
         const response = yield call(getShiftStatus, { pin, shiftId });
-        console.log(response);
         const result = yield response.json();
-        console.log(result);
         if (result.errors) {
             const message = getValidationErrorString(result.errors);
             yield put({ type: SET_CHECKING_ERROR, error: message });
