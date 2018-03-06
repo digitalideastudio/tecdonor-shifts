@@ -36,7 +36,12 @@ class CheckInContainer extends Component {
         if (nextProps.checkingResultMessage) {
             this._showModal();
         }
-    }
+    };
+
+    _backToShifts = () => {
+        this.props.resetChecking();
+        this.props.navigation.goBack();
+    };
 
     _hideModal = () => {
         this.setState({ isShowModal: false });
@@ -121,7 +126,7 @@ class CheckInContainer extends Component {
                         <Spinner show={loading}/>
                     </View>
                 </KeyboardAvoidingView>
-                <Footer/>
+                <Footer onLogoPress={this._backToShifts}/>
                 <CheckActionResultModal
                     show={this.state.isShowModal}
                     onHide={this._hideModal}

@@ -28,6 +28,7 @@ const LoginInputGroup = ({ style, email, password, onFieldChange }) => (
             style={styles.topInput}
             onChangeText={value => onFieldChange({ name: 'email', value })}
             value={email}
+            autoCapitalize="none"
         />
         <InputWithIconAndButton
             placeholder={'password'}

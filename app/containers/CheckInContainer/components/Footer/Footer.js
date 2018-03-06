@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Linking } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { Logo } from '../../../../components/Logo';
 
 import styles from './styles';
 
-const Footer = () => (
+const Footer = ({ onLogoPress }) => (
     <View style={styles.container}>
-        <View style={styles.logoContainer}>
+        <TouchableOpacity
+            onPress={onLogoPress}
+            style={styles.logoContainer}
+        >
             <Logo width={100}/>
-        </View>
+        </TouchableOpacity>
         <TouchableOpacity
             style={styles.linkContainer}
             onPress={() => Linking.openURL('https://tecdonor.com')}
@@ -20,5 +24,9 @@ const Footer = () => (
         </TouchableOpacity>
     </View>
 );
+
+Footer.propTypes = {
+    onLogoPress: PropTypes.func
+};
 
 export default Footer;

@@ -16,6 +16,7 @@ const InputWithIconAndButton = ({
                                     inputStyle,
                                     onChangeText,
                                     value,
+                                    ...restParams
                                 }) => {
     let inputRef;
 
@@ -62,6 +63,7 @@ const InputWithIconAndButton = ({
                     keyboardType={keyboardType}
                     value={value}
                     onChangeText={onChangeText}
+                    {...restParams}
                 />
                 {getButton()}
             </View>
