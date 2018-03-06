@@ -7,7 +7,7 @@ import { ThreeAsterisk } from '../../../../components/Icon';
 
 import styles from './styles';
 
-const PinInput = () => (
+const PinInput = ({ onChange, value, onButtonPress }) => (
     <View style={styles.container}>
         <View style={styles.mainSpacer}/>
         <View style={styles.inputContainer}>
@@ -18,13 +18,18 @@ const PinInput = () => (
                 placeholder={'PERSONAL PIN'}
                 inputStyle={{ textAlign: 'center' }}
                 keyboardType={'numeric'}
+                onChangeText={onChange}
+                value={value}
+                onButtonPress={onButtonPress}
             />
         </View>
     </View>
 );
 
 PinInput.propTypes = {
-
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    onButtonPress: PropTypes.func,
 };
 
 export default PinInput;

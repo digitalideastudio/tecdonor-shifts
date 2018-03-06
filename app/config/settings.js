@@ -1,0 +1,1 @@
+export const TIME_FORMAT = 'ddd MMM D h:mm:ss A';

@@ -14,14 +14,16 @@ const ShiftItem = ({
                        style,
                        title,
                        location,
-                       dateStart,
-                       timeStart,
+                       start,
                        volunteersCount,
                        imageUrl,
                        onPress,
                    }) => {
     const getPlace = () => {
-        const locationObj = JSON.parse(location);
+        let locationObj = location;
+        if (typeof location === 'string') {
+            locationObj = JSON.parse(location);
+        }
         if (locationObj !== null && typeof locationObj === 'object' && locationObj.name) {
             return (
                 <View style={styles.placeWrap}>
@@ -39,25 +41,16 @@ const ShiftItem = ({
         return null;
     };
 
-    const getBgImage = () => {
-        if (imageUrl) {
-            return (
-                <BackgroundImage
-                    source={{ uri: imageUrl }}
-                    blurStyle={styles.titleBlurBg}
-                />
-            );
-        }
-        return null;
-    };
-
     return (
         <TouchableOpacity
             style={[styles.container, style]}
             onPress={onPress}
         >
             <View style={styles.titleWrap}>
-                { getBgImage() }
+                <BackgroundImage
+                    url={imageUrl}
+                    blurStyle={styles.titleBlurBg}
+                />
                 <Text style={styles.titleText}>{title}</Text>
             </View>
             <View style={styles.mainWrap}>
@@ -73,7 +66,7 @@ const ShiftItem = ({
                 </View>
                 <View >
                     <CalendarEvent
-                        date={`${dateStart} ${timeStart}`}
+                        date={start}
                     />
                 </View>
             </View>
@@ -84,8 +77,7 @@ const ShiftItem = ({
 ShiftItem.propTypes = {
     style: PropTypes.any,
     title: PropTypes.string,
-    dateStart: PropTypes.string,
-    timeStart: PropTypes.string,
+    start: PropTypes.string,
     volunteersCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     imageUrl: PropTypes.string,
     onPress: PropTypes.func,

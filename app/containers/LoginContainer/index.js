@@ -8,8 +8,8 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import validate from 'validate.js';
-import { getValidationErrorString } from '../../utils/validation';
 
+import { getValidationErrorString } from '../../utils/validation';
 import { setInputValue, logIn } from '../../actions/login';
 
 import { Container } from '../../components/Container';

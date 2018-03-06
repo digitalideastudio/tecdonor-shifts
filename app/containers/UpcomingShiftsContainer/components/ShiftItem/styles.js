@@ -27,7 +27,7 @@ export default EStyleSheet.create({
         textAlign: 'center',
     },
     titleBlurBg: {
-        backgroundColor: '#0005',
+        backgroundColor: '$imageBlurBg',
     },
     mainWrap: {
         padding: 15,

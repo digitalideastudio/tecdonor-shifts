@@ -8,6 +8,10 @@ export default EStyleSheet.create({
     },
     header: {
         flex: 2,
+        backgroundColor: '$firmColor1',
+    },
+    headerBlurBg: {
+        backgroundColor: '$imageBlurBg',
     },
     titles: {
         flex: 1,

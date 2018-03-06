@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const BackgroundImage = ({ source, blurStyle }) => {
+const BackgroundImage = ({ source, blurStyle, url }) => {
     const getImage = () => {
-        console.log(source);
-        if (source) {
+        if (source || url) {
+            const src = source ? source : { uri: url };
             return (
                 <Image
-                    source={source}
+                    source={src}
                     style={styles.image}
                 />
             )
         }
-        return nul;
+        return null;
     };
     return (
         <View style={styles.container}>
@@ -27,6 +27,7 @@ const BackgroundImage = ({ source, blurStyle }) => {
 
 BackgroundImage.propTypes = {
     source: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    url: PropTypes.string,
     blurStyle: PropTypes.any,
 };
 

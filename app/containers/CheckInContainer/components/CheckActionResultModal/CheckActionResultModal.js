@@ -7,7 +7,7 @@ import { FlatButton } from '../../../../components/Button';
 
 import styles from './styles';
 
-const CheckActionResultModal = ({ show, onHide }) => {
+const CheckActionResultModal = ({ show, onHide, text }) => {
 
     return (
         <Modal
@@ -19,11 +19,10 @@ const CheckActionResultModal = ({ show, onHide }) => {
         >
             <View style={styles.container}>
                 <Text style={styles.titleText}>
-                    Welcome
+                    Checking
                 </Text>
                 <Text style={styles.mainText}>
-                    Check-out successful{"\n"}
-                    Have a great time!
+                    {text}
                 </Text>
                 <FlatButton
                     style={{ width: 150 }}
@@ -38,6 +37,7 @@ const CheckActionResultModal = ({ show, onHide }) => {
 CheckActionResultModal.propTypes = {
     show: PropTypes.bool,
     onHide: PropTypes.func,
+    text: PropTypes.string
 };
 
 export default CheckActionResultModal;

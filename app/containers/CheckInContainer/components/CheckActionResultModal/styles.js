@@ -19,6 +19,7 @@ export default EStyleSheet.create({
         color: '$firmColor1',
         fontFamily: '$commonFontFamily',
         fontSize: 24,
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingVertical: 20
     }
 });

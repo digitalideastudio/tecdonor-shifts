@@ -33,6 +33,7 @@ export const colors = {
     $pageTitleColor: '#7D8BA1',
     $barelyColor: '#C4C4C4',
     $borderColor: '#DDDFE4',
+    $imageBlurBg: '#0005',
 };
 
 export const block = {
