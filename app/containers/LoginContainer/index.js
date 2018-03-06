@@ -36,7 +36,7 @@ class LoginContainer extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.loginError) {
+        if (nextProps.loginError && nextProps.loginError !== this.props.loginError) {
             this.props.alertWithType('error', 'Login error', nextProps.loginError)
         }
         if (nextProps.logged) {

@@ -30,7 +30,7 @@ class CheckInContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.checkingError) {
+        if (nextProps.checkingError && nextProps.checkingError !== this.props.checkingError) {
             this.props.alertWithType('error', 'Error', nextProps.checkingError)
         }
         if (nextProps.checkingResultMessage) {
@@ -53,6 +53,7 @@ class CheckInContainer extends Component {
     };
 
     _onConfirmPress = () => {
+        console.log('_onConfirmPress');
         const { pin, id } = this.props;
         const validateResult = validate(this.props, validationRules);
         if (validateResult) {
