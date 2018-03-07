@@ -1,5 +1,12 @@
 {
   "expo": {
+    "name": "Tecdonor App",
+    "icon": "./assets/images/logo-sq.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "backgroundColor": "#FDFFFB",
+      "resizeMode": "contain"
+    },
     "sdkVersion": "25.0.0"
   }
 }
