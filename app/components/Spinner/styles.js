@@ -11,6 +11,9 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#fff9'
     },
+    relative: {
+        position: 'relative'
+    },
     spinner: {
         color: '$firmColor2'
     }

@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const Spinner = ({ show, size = 'large' }) => {
+const Spinner = ({ show, size = 'large', overlap = true, ...props }) => {
+    const containerStyles = [styles.container];
+    if (!overlap) containerStyles.push(styles.relative);
+
     return show === false ? null : (
-        <View style={styles.container}>
+        <View style={containerStyles}>
             <ActivityIndicator
                 size={size}
+                {...props}
             />
         </View>
     );

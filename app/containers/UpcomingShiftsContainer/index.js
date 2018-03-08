@@ -62,7 +62,7 @@ class UpcomingShiftsContainer extends Component {
                 />
             ));
         } else if (this.props.loading && !this.props.loaded){
-            return (<View><Spinner /></View>);
+            return (<Spinner show={true} overlap={false}/>);
         } else {
             return (
                 <NoShifts
@@ -81,7 +81,7 @@ class UpcomingShiftsContainer extends Component {
                 <SafeAreaView style={styles.container}>
                     <ScrollView
                         refreshControl={this._getRefreshControl()}
-                        contentContainerStyle={{ flexGrow: 1 }}
+                        contentContainerStyle={{ flexGrow: 1, flexDirection: 'column' }}
                     >
                         <View style={styles.headContainer}>
                             <PageTitleWithLogo title={'Upcoming shifts'}/>
