@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
+import { View, Image } from 'react-native';
+import ThreeAsteriskImage from './images/three-sterisk.png';
 
 import styles from './styles';
 
 const ThreeAsterisk = () => (
-    <View style={styles.containerInBorder}>
-        <Text style={styles.textInBorder}>***</Text>
+    <View style={styles.threeAsteriskContainer}>
+        <Image
+            style={styles.imageIcon}
+            source={ThreeAsteriskImage}
+        />
     </View>
 );
 
