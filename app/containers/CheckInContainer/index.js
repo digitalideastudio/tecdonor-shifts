@@ -103,7 +103,7 @@ class CheckInContainer extends Component {
                 <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView
                     behavior={'padding'}
-                    style={{ flex: 1 }}
+                    style={styles.container}
                 >
                     <View style={styles.header}>
                         <BackgroundImage
@@ -119,7 +119,10 @@ class CheckInContainer extends Component {
                                 >
                                     {title}
                                 </Text>
-                                <Text style={styles.pageSubTitleText}>
+                                <Text
+                                    style={styles.pageSubTitleText}
+                                    numberOfLines={1}
+                                >
                                     {opportunityName}
                                 </Text>
                             </View>

@@ -81,7 +81,7 @@ class UpcomingShiftsContainer extends Component {
                 <SafeAreaView style={styles.container}>
                     <ScrollView
                         refreshControl={this._getRefreshControl()}
-                        contentContainerStyle={{ flexGrow: 1, flexDirection: 'column' }}
+                        contentContainerStyle={{ flexGrow: 1 }}
                     >
                         <View style={styles.headContainer}>
                             <PageTitleWithLogo title={'Upcoming shifts'}/>

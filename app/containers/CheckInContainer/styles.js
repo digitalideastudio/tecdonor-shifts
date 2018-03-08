@@ -3,8 +3,7 @@ import { textShadow } from '../../config/theme';
 
 export default EStyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '$bgPrimary'
+        flex: 1
     },
     header: {
         flex: 2,
