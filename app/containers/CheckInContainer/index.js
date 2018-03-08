@@ -53,7 +53,6 @@ class CheckInContainer extends Component {
     };
 
     _onConfirmPress = () => {
-        console.log('_onConfirmPress');
         const { pin, id } = this.props;
         const validateResult = validate(this.props, validationRules);
         if (validateResult) {

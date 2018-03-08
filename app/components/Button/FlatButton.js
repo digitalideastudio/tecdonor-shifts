@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const FlatButton = ({ text, style, onPress }) => (
+const FlatButton = ({ text, style, onPress, ...props }) => (
     <View style={styles.container}>
         <TouchableOpacity
             style={[styles.button, style]}
             onPress={onPress}
+            {...props}
         >
             <Text style={styles.buttonText}>
                 {text}

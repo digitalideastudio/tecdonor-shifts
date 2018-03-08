@@ -39,7 +39,8 @@ export const colors = {
 export const block = {
     $blockBorderWidth: 2,
     $blockBorderColor: colors.$borderColor,
-    $blockBorderRadius: 7
+    $blockBorderRadius: 7,
+    $blockFormMaxWidth: 300
 };
 
 export const input = {

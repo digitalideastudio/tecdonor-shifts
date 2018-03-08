@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, ScrollView, StatusBar } from 'react-native';
+import { View, SafeAreaView, ScrollView, StatusBar, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { CommonText } from '../../components/Common';
 import { Spinner } from '../../components/Spinner';
 import { connectAlert } from '../../components/Alert';
 import { PageTitleWithLogo } from '../../components/Title';
 import { Container } from '../../components/Container';
 import { ShiftItem } from './components/ShiftItem';
+import { NoShifts } from './components/NoShifts';
 
-import { fetchShifts, setSelectedShift } from '../../actions/shifts';
+import { fetchShifts, setSelectedShift, resetShifts } from '../../actions/shifts';
 
 import styles from './styles';
 
@@ -18,11 +18,13 @@ class UpcomingShiftsContainer extends Component {
     static propTypes = {
         shifts: PropTypes.array,
         loading: PropTypes.bool,
+        loaded: PropTypes.bool,
         fetchShifts: PropTypes.func,
-        setSelectedShift: PropTypes.func
+        setSelectedShift: PropTypes.func,
+        resetShifts: PropTypes.func,
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchShifts();
     }
 
@@ -37,6 +39,18 @@ class UpcomingShiftsContainer extends Component {
         this.props.navigation.navigate('Checking');
     };
 
+    _logout = () => {
+        this.props.resetShifts();
+        this.props.navigation.goBack();
+    };
+
+    _getRefreshControl = () => (
+        <RefreshControl
+            refreshing={false}
+            onRefresh={this.props.fetchShifts}
+        />
+    );
+
     _getShifts = () => {
         if (this.props.shifts && this.props.shifts.length) {
             return this.props.shifts.map(shift => (
@@ -47,10 +61,16 @@ class UpcomingShiftsContainer extends Component {
                     {...shift}
                 />
             ));
-        } else if (this.props.loading){
+        } else if (this.props.loading && !this.props.loaded){
             return (<View><Spinner /></View>);
         } else {
-            return <CommonText>No shifts</CommonText>
+            return (
+                <NoShifts
+                    onLogoutPress={this._logout}
+                    onRefreshPress={this.props.fetchShifts}
+                    refreshing={this.props.loading}
+                />
+            );
         }
     };
 
@@ -60,6 +80,7 @@ class UpcomingShiftsContainer extends Component {
                 <StatusBar barStyle="dark-content"/>
                 <SafeAreaView style={styles.container}>
                     <ScrollView
+                        refreshControl={this._getRefreshControl()}
                         contentContainerStyle={{ flexGrow: 1 }}
                     >
                         <View style={styles.headContainer}>
@@ -76,11 +97,12 @@ class UpcomingShiftsContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { shifts, loading, error } = state.shifts;
+    const { shifts, loading, error, loaded } = state.shifts;
 
     return {
         shifts,
         loading,
+        loaded,
         fetchShiftsError: error
     }
 };
@@ -92,6 +114,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setSelectedShift: (shift) => {
             dispatch(setSelectedShift(shift));
+        },
+        resetShifts: () => {
+            dispatch(resetShifts());
         }
     }
 };

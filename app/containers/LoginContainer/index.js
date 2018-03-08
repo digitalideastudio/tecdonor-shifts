@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import validate from 'validate.js';
 
 import { getValidationErrorString } from '../../utils/validation';
-import { setInputValue, logIn } from '../../actions/login';
+import { setInputValue, logIn, resetLogin } from '../../actions/login';
 
 import { Container } from '../../components/Container';
 import { PageTitleWithLogo } from '../../components/Title';
@@ -26,13 +26,21 @@ class LoginContainer extends Component {
     static propTypes = {
         email: PropTypes.string,
         password: PropTypes.string,
-        onFieldChange: PropTypes.func,
-        logIn: PropTypes.func,
         loading: PropTypes.bool,
         logged: PropTypes.bool,
         navigation: PropTypes.object,
-        alertWithType: PropTypes.func,
         loginError: PropTypes.string,
+        resetLogin: PropTypes.func,
+        onFieldChange: PropTypes.func,
+        logIn: PropTypes.func,
+        alertWithType: PropTypes.func,
+    };
+
+    componentWillMount() {
+        this._willBlurSubs = this.props.navigation.addListener(
+            'willBlur',
+            this.props.resetLogin
+        );
     };
 
     componentWillReceiveProps(nextProps) {
@@ -42,7 +50,11 @@ class LoginContainer extends Component {
         if (nextProps.logged) {
             this.props.navigation.navigate('UpcomingShifts');
         }
-    }
+    };
+
+    componentWillUnmount() {
+        this._willBlurSubs.remove();
+    };
 
     _onLoginPress = () => {
         const validateResult = validate(this.props, validationRules);
@@ -113,6 +125,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onFieldChange: ({ name, value }) => {
             dispatch(setInputValue({ name, value }));
+        },
+        resetLogin: () => {
+            dispatch(resetLogin());
         }
     }
 };

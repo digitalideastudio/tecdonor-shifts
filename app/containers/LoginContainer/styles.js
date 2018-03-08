@@ -14,7 +14,7 @@ export default EStyleSheet.create({
         alignItems: 'center',
     },
     formContainer: {
-        maxWidth: 300,
+        maxWidth: '$blockFormMaxWidth',
         width: '100%',
     },
     loginButton: {
