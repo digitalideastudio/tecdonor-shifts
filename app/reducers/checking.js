@@ -11,6 +11,7 @@ import {
 } from '../actions/checking';
 
 const initialState = () => ({
+    // TODO: remove hardcoded pin
     pin: '',
     loading: false,
     checkLoading: false,
