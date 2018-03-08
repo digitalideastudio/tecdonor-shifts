@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { colors } from '../../config/theme';
 import styles from './styles';
 
 const Spinner = ({ show, size = 'large', overlap = true, ...props }) => {
@@ -13,6 +14,7 @@ const Spinner = ({ show, size = 'large', overlap = true, ...props }) => {
             <ActivityIndicator
                 size={size}
                 {...props}
+                color={colors.$firmColor1}
             />
         </View>
     );
